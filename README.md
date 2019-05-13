@@ -1,2 +1,2 @@
 # Neural-Network
-Neural network class library
+This is a Neural Network class library!!!
