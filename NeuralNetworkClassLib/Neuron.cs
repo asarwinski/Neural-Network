@@ -37,7 +37,7 @@ namespace NeuralNetworkClassLib
         public void PushValues(List<double> inputValues)
         {
             double weightedSum;
-            inputValues.Insert(1,0);
+            inputValues.Insert(0,1);
             weightedSum = inputValues.ForEach(value => value*weights[inputValues.IndexOf(value)]);
             Value = activationFuntion(weightedSum);
         }
