@@ -5,11 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using NeuralNetworkClassLib.Interfaces;
 
-namespace NeuralNetworkClassLib
+namespace NeuralNetworkClassLib.Classes
 {
-    class Neuron
+    public class Neuron
     {
-        List<double> weights = new List<double>();
+        public List<ISynapse> InputSynapses = new List<ISynapse>();
+        public List<ISynapse> OutputSynapses = new List<ISynapse>();
         IActivationFunction activationFunction;
         
         static Random rnd = new Random();
@@ -29,28 +30,31 @@ namespace NeuralNetworkClassLib
         }
         public double PreviousValue { get; private set; }
         
-        public Neuron(int numberOfInputs, IActivationFunction activationFunction)
+        public Neuron(IActivationFunction activationFunction)
         {
-            InitalizeWeights(numberOfInputs);
             this.activationFunction = activationFunction;
+            //adding bias
+            InputSynapses.Add(new Bias());
+        }
+
+        public void AddInputNeuron(Neuron input)
+        {
+            var synapse = new Synapse(input, this);
+            InputSynapses.Add(synapse);
+            input.OutputSynapses.Add(synapse);
         }
         
-        public void PushValues(List<double> inputValues)
+        public void PushValues()
         {
             double weightedSum;
-            //need one more weight for bias
-            inputValues.Insert(0,1);
-            weightedSum = inputValues.Select(value => value * weights[inputValues.IndexOf(value)]).Sum();
+            weightedSum = InputSynapses.Select(synapse => synapse.Value).Sum();
             Value = activationFunction.Calculate(weightedSum);
+            OutputSynapses.ForEach(synapse => synapse.PushValue(Value));
         }
-        
-        void InitalizeWeights(int numberOfInputs)
-        {    
-            for(int i = 0; i < numberOfInputs+1; i++)
-            {
-                double newWeight = rnd.NextDouble()*10-5;
-                weights.Add(newWeight); 
-            }
+
+        public void PushValueOnInput(List<double> inputs)
+        {
+            InputSynapses.ForEach(synapse => synapse.PushValue(inputs[InputSynapses.IndexOf(synapse)]));
         }
     }
 }

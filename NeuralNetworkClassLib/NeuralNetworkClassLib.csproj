@@ -41,9 +41,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Bias.cs" />
+    <Compile Include="Classes\BlankActivationFunction.cs" />
+    <Compile Include="Classes\InputSynapse.cs" />
+    <Compile Include="Classes\NeuralNetwork.cs" />
     <Compile Include="Classes\Neuron.cs" />
     <Compile Include="Classes\NeuronLayer.cs" />
+    <Compile Include="Classes\SigmoidActivationFunction.cs" />
+    <Compile Include="Classes\Synapse.cs" />
     <Compile Include="Interfaces\IActivationFunction.cs" />
+    <Compile Include="Interfaces\ISynapse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

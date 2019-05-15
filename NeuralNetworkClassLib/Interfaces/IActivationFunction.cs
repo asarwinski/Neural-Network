@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NeuralNetworkClassLib.Interfaces
 {
-    interface IActivationFunction
+    public interface IActivationFunction
     {
         double Calculate(double input);
         double GetDerivative(double input);
