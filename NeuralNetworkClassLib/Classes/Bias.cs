@@ -7,7 +7,7 @@ using NeuralNetworkClassLib.Interfaces;
 
 namespace NeuralNetworkClassLib.Classes
 {
-    class Bias : ISynapse
+    public class Bias : ISynapse
     {
         public Neuron FromNeuron { get; } = null;
         public Neuron ToNeuron { get; }
@@ -41,6 +41,7 @@ namespace NeuralNetworkClassLib.Classes
         {
             this.ToNeuron = toNeuron;
             this.Weight = rnd.NextDouble() * 10 - 5;
+            LastWeight = Weight;
         }
 
         public void PushValue(double input)

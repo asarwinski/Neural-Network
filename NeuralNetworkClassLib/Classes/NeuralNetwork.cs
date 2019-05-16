@@ -63,8 +63,8 @@ namespace NeuralNetworkClassLib.Classes
                         (
                             synapse =>
                             {
-                                if (synapse.FromNeuron == null) synapse.Weight += trainingRate * synapse.ToNeuron.Delta;
-                                else synapse.Weight += trainingRate * synapse.ToNeuron.Delta * synapse.FromNeuron.Value;
+                                if (synapse.FromNeuron == null) synapse.Weight += trainingRate * synapse.ToNeuron.Delta + (synapse.Weight - synapse.LastWeight) * 0.9;
+                                else synapse.Weight += trainingRate * synapse.ToNeuron.Delta * synapse.FromNeuron.Value + (synapse.Weight - synapse.LastWeight) * 0.9;
                             }
                         );
                 }

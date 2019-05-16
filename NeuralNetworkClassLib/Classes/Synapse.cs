@@ -36,6 +36,7 @@ namespace NeuralNetworkClassLib.Classes
             this.FromNeuron = fromNeuron;
             this.ToNeuron = toNeuron;
             this.Weight = rnd.NextDouble() * 10 - 5;
+            LastWeight = Weight;
         }
 
         public void PushValue(double input)
