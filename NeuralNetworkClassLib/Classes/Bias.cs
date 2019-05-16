@@ -10,6 +10,7 @@ namespace NeuralNetworkClassLib.Classes
     class Bias : ISynapse
     {
         public Neuron FromNeuron { get; } = null;
+        public Neuron ToNeuron { get; }
 
         double _weight;
         public double Weight
@@ -36,8 +37,9 @@ namespace NeuralNetworkClassLib.Classes
 
         static Random rnd = new Random();
 
-        public Bias()
+        public Bias(Neuron toNeuron)
         {
+            this.ToNeuron = toNeuron;
             this.Weight = rnd.NextDouble() * 10 - 5;
         }
 

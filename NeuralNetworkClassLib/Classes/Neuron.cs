@@ -11,7 +11,8 @@ namespace NeuralNetworkClassLib.Classes
     {
         public List<ISynapse> InputSynapses = new List<ISynapse>();
         public List<ISynapse> OutputSynapses = new List<ISynapse>();
-        IActivationFunction activationFunction;
+        public double Delta { get; set; } = 0;
+        public IActivationFunction ActivationFunction { get; private set; }
         
         static Random rnd = new Random();
         
@@ -32,9 +33,7 @@ namespace NeuralNetworkClassLib.Classes
         
         public Neuron(IActivationFunction activationFunction)
         {
-            this.activationFunction = activationFunction;
-            //adding bias
-            InputSynapses.Add(new Bias());
+            this.ActivationFunction = activationFunction;
         }
 
         public void AddInputNeuron(Neuron input)
@@ -48,7 +47,7 @@ namespace NeuralNetworkClassLib.Classes
         {
             double weightedSum;
             weightedSum = InputSynapses.Select(synapse => synapse.Value).Sum();
-            Value = activationFunction.Calculate(weightedSum);
+            Value = ActivationFunction.Calculate(weightedSum);
             OutputSynapses.ForEach(synapse => synapse.PushValue(Value));
         }
 

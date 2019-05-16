@@ -45,6 +45,7 @@
     <Compile Include="Classes\BlankActivationFunction.cs" />
     <Compile Include="Classes\InputSynapse.cs" />
     <Compile Include="Classes\NeuralNetwork.cs" />
+    <Compile Include="NeuralNetworkTrainingData.cs" />
     <Compile Include="Classes\Neuron.cs" />
     <Compile Include="Classes\NeuronLayer.cs" />
     <Compile Include="Classes\SigmoidActivationFunction.cs" />

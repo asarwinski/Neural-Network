@@ -10,6 +10,7 @@ namespace NeuralNetworkClassLib.Classes
     public class InputSynapse : ISynapse
     {
         public Neuron FromNeuron { get; } = null;
+        public Neuron ToNeuron { get; }
 
         double _weight = 1;
         public double Weight
@@ -30,8 +31,9 @@ namespace NeuralNetworkClassLib.Classes
 
         static Random rnd = new Random();
 
-        public InputSynapse()
+        public InputSynapse(Neuron toNeuron)
         {
+            this.ToNeuron = toNeuron;
             Value = 1;
         }
 

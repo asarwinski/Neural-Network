@@ -9,7 +9,8 @@ namespace NeuralNetworkClassLib.Classes
 {
     public class Synapse : ISynapse
     {
-        public Neuron FromNeuron { get; }
+        public Neuron FromNeuron { get; private set; }
+        public Neuron ToNeuron { get; private set; }
 
         double _weight;
         public double Weight
@@ -33,6 +34,7 @@ namespace NeuralNetworkClassLib.Classes
         public Synapse(Neuron fromNeuron, Neuron toNeuron)
         {
             this.FromNeuron = fromNeuron;
+            this.ToNeuron = toNeuron;
             this.Weight = rnd.NextDouble() * 10 - 5;
         }
 

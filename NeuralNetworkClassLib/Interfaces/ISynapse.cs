@@ -10,6 +10,7 @@ namespace NeuralNetworkClassLib.Interfaces
     public interface ISynapse
     {
         Neuron FromNeuron { get; }
+        Neuron ToNeuron { get; }
         double Weight { get; set; }
         double LastWeight { get; }
         double Value { get; }
